@@ -8,22 +8,30 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
+                    
+                    {{-- ユーザ一覧ページへのリンク --}}
                 {{-- タスク作成ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('tasks.create', '新規タスクの登録', [], ['class' => 'nav-link']) !!}</li>
-{{-- ログインしていない場合は、ログインと登録の表示 --}}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            {{-- ユーザ詳細ページへのリンク --}}
+                            <li class="dropdown-item"><a href="#">タスク一覧</a></li>
+                            <li class="dropdown-divider"></li>
+                            {{-- ログアウトへのリンク --}}
+                            <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                        </ul>
+                    </li>                    
+                    
+                    
+                
+                {{-- ログインしていない場合は、ログインと登録の表示 --}}
 
                 @else
                      {{-- ユーザ登録ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('signup.get', 'ユーザー登録', [], ['class' => 'nav-link']) !!}</li>
-
                     {{-- ログインページへのリンク --}}
-                    <li class="nav-item"><a href="#" class="nav-link">ログイン</a></li>
-
-
-                   
-                    
-                    {{-- ログインページへのリンク --}}
- {{--                   <li class="nav-item">{!! link_to_route('login', 'Login', [], ['class' => 'nav-link']) !!}</li> --}}
+                   <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
                 
                 @endif                
             </ul>
