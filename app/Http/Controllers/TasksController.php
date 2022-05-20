@@ -88,11 +88,7 @@ class TasksController extends Controller
                 'task' => $task,
             ]);
         }
-        return back();
-        // タスク詳細でそれを表示
-//        return view('tasks.show', [
-//            'task' => $task,
-//        ]);
+            return redirect('/');
     }
 
     /**
@@ -111,7 +107,7 @@ class TasksController extends Controller
                 'task' => $task,
             ]);
         }
-        return back();
+        return redirect('/');
     }
 
     /**
@@ -139,10 +135,10 @@ class TasksController extends Controller
             $task->status = $request->status; //追加
             $task->save();
         // トップページへリダイレクト
+        }
 
             return redirect('/');
-        }
-        return back();    
+ 
     }
 
     /**
@@ -159,8 +155,7 @@ class TasksController extends Controller
             // タスクを削除
             $task->delete();
             // トップページへリダイレクト
-            return redirect('/');
         }
-        return back();
+            return redirect('/');
     }
 }
